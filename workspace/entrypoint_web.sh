@@ -20,8 +20,6 @@ openssl x509 -days 365 -req \
         -in /etc/ssl/private/server.csr \
         -out /etc/ssl/private/server.crt
 
-# ●●●SSLのプロトコルが低い？
-
 # setting file replace and copy
 sed -e "s/WEB_ROOT_DIRECTORY/${1}/gi" \
     -e "s/WEB_DOMAIN/${2}/gi" \
