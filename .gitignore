@@ -1,0 +1,17 @@
+.env
+/workspace/*
+!/workspace/entrypoint_*.sh
+/apache/www/*
+!/apache/www/.gitkeep
+/apache/confd/*
+!/apache/confd/.gitkeep
+/apache/log/*
+!/apache/log/.gitkeep
+/php/error_log/*
+!/php/error_log/.gitkeep
+/vsftpd/user_conf/*
+!/vsftpd/user_conf/.gitkeep
+/vsftpd/log/*
+!/vsftpd/log/.gitkeep
+/cert/*
+!/cert/.gitkeep

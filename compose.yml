@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+  web:
+    build:
+      context: ./apache/docker
+      dockerfile: Dockerfile
+      args:
+        WEB_ROOT_DIRECTORY: $WEB_ROOT_DIRECTORY
+        WEB_CONTAINER_PORTNUM: $WEB_CONTAINER_PORTNUM
+        PHP_VERSION: $PHP_VERSION
+    labels:
+      lamp.ambergrease.elephant: "Ambergrease PHP"
+    volumes:
+      # workspace
+      - ./workspace:/workspace
+      # docker settings template
+      - ./template:/template
+#      # apache conf.d
+#      - ./apache/confd:/etc/httpd/conf.d
+      # apache log
+      - ./apache/log:/var/log/apache2
+#      # php ini
+#      - ./php/php-${PHP_VERSION}.ini:/etc/php.ini
+#/etc/php/8.1/apache2/php.ini
+      # error log
+      - ./php/error_log:/var/log/php
+#      # vsftpd cnf
+#      - ./vsftpd/conf/vsftpd.conf:/etc/vsftpd/vsftpd.conf
+#      # vsftpd user_conf
+#      - ./vsftpd/user_conf:/etc/vsftpd/user_conf
+#      # vsftpd log
+#      - ./vsftpd/log:/var/log/vsftpd
+      # SSL
+      - ./cert:/etc/ssl/private
+    tty: true
+    ports:
+      - "$WEB_HOST_PORTNUM:$WEB_CONTAINER_PORTNUM"
+      - "$WEB_HOST_PORTSSL:$WEB_CONTAINER_PORTSSL"
+      - "$WEB_HOST_PORTSSH:$WEB_CONTAINER_PORTSSH"
+#      - "$WEB_HOST_PORTFTPC:$WEB_CONTAINER_PORTFTPC"
+#      - "64000-64050:64000-64050"
+    entrypoint: bash -c "bash /workspace/entrypoint_web.sh $WEB_ROOT_DIRECTORY $WEB_DOMAIN $WEB_HOST_PORTNUM $WEB_CONTAINER_PORTNUM $WEB_HOST_PORTSSL $WEB_CONTAINER_PORTSSL $WEB_SSH_USER $WEB_SSH_PASSWORD $WEB_FTP_USER $WEB_FTP_PASSWORD $PHP_VERSION && /bin/bash"
