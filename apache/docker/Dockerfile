@@ -27,9 +27,9 @@ RUN apt update \
                    # git
                    git \
                    # FTP
-                   #vsftpd \
+                   vsftpd \
                    # pasword
-                   #passwd \
+                   passwd \
                    # Set Timezone
                    tzdata \
                    # Set local to jp.
@@ -83,12 +83,12 @@ RUN chmod 755 /var/log/php
 # SSL
 RUN mkdir -p /etc/ssl/private
 # volume directory
-RUN mkdir /template
-RUN mkdir /var/www/${WEB_ROOT_DIRECTORY}
-RUN mkdir /var/www/${WEB_ROOT_DIRECTORY}/web
-RUN mkdir /workspace
+RUN mkdir -p /template
+RUN mkdir -p /var/www/${WEB_ROOT_DIRECTORY}
+RUN mkdir -p /var/www/${WEB_ROOT_DIRECTORY}/web
+RUN mkdir -p /workspace
 # SSH
-RUN mkdir /var/run/sshd
+RUN mkdir -p /var/run/sshd
 # FTP
-#RUN mkdir /var/log/vsftpd
-#RUN mkdir /etc/vsftpd/user_conf
+RUN mkdir -p /var/log/vsftpd
+RUN mkdir -p /etc/vsftpd/user_conf

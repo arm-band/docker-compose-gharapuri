@@ -36,9 +36,7 @@ sed -e "s/WEB_ROOT_DIRECTORY/${1}/gi" \
     -e "s/WEB_CONTAINER_PORTSSL/${6}/gi" \
         /template/apache/apache_vh_ssl.conf > /etc/apache2/sites-available/${1}_ssl.conf
 
-#cp /template/apache/php.conf /etc/httpd/conf.d/php.conf
-#cp /template/apache/ssl.conf /etc/httpd/conf.d/ssl.conf
-#cp /template/apache/modules/00-mpm.conf /etc/httpd/conf.modules.d/00-mpm.conf
+cp /template/apache/ssl.conf /etc/apache2/mods-available/ssl.conf
 
 # apache module enable
 a2enmod ssl proxy_fcgi setenvif rewrite
@@ -60,14 +58,15 @@ ssh-keygen -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key
 /usr/sbin/sshd -D &
 
 # FTP
-#useradd ${9}
+useradd ${9}
 #echo ${10} | passwd --stdin ${9}
-#
-#cp /template/vsftpd/chroot_list /etc/vsftpd/chroot_list
-#
-#sed -e "s/WEB_FTP_USER/${9}/gi" \
-#        /template/vsftpd/user_list > /etc/vsftpd/user_list
-#sed -e "s/WEB_ROOT_DIRECTORY/${1}/gi" \
-#        /template/vsftpd/WEB_FTP_USER > /etc/vsftpd/user_conf/${9}
-#
-#/usr/sbin/vsftpd &
+echo -e "${10}\n${10}" | passwd "${9}"
+
+cp /template/vsftpd/chroot_list /etc/vsftpd/chroot_list
+
+sed -e "s/WEB_FTP_USER/${9}/gi" \
+        /template/vsftpd/user_list > /etc/vsftpd/user_list
+sed -e "s/WEB_ROOT_DIRECTORY/${1}/gi" \
+        /template/vsftpd/WEB_FTP_USER > /etc/vsftpd/user_conf/${9}
+
+/usr/sbin/vsftpd &
