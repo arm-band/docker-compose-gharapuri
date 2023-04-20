@@ -15,19 +15,17 @@ services:
       - ./workspace:/workspace
       # docker settings template
       - ./template:/template
-#      # apache conf.d
-#      - ./apache/confd:/etc/httpd/conf.d
       # apache log
       - ./apache/log:/var/log/apache2
-#      # php ini
+      # php ini
       - ./php/ini/php.ini:/etc/php/${PHP_VERSION}/fpm/php.ini
       # error log
       - ./php/error_log:/var/log/php
-#      # vsftpd cnf
+      # vsftpd cnf
       - ./vsftpd/conf/vsftpd.conf:/etc/vsftpd.conf
-#      # vsftpd user_conf
+      # vsftpd user_conf
       - ./vsftpd/user_conf:/etc/vsftpd/user_conf
-#      # vsftpd log
+      # vsftpd log
       - ./vsftpd/log:/var/log/vsftpd
       # SSL
       - ./cert:/etc/ssl/private

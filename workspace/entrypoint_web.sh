@@ -52,15 +52,14 @@ service apache2 start
 /usr/sbin/php-fpm${11} &
 
 # SSH
-sed -ri 's/^#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
-echo "${7}:${8}" | chpasswd
-ssh-keygen -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key
+sed -ri 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+echo "${7}:${8}" | /usr/sbin/chpasswd
+ssh-keygen -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key <<< y
 /usr/sbin/sshd -D &
 
 # FTP
 useradd ${9}
-#echo ${10} | passwd --stdin ${9}
-echo -e "${10}\n${10}" | passwd "${9}"
+echo "${9}:${10}" | /usr/sbin/chpasswd
 
 cp /template/vsftpd/chroot_list /etc/vsftpd/chroot_list
 
