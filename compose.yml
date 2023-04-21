@@ -9,7 +9,7 @@ services:
         WEB_CONTAINER_PORTNUM: $WEB_CONTAINER_PORTNUM
         PHP_VERSION: $PHP_VERSION
     labels:
-      lamp.ambergrease.elephant: "Ambergrease PHP"
+      elephanta.cave.gharapuri: "Gharapuri PHP"
     volumes:
       # workspace
       - ./workspace:/workspace
