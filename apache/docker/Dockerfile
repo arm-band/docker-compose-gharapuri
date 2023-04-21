@@ -1,7 +1,6 @@
 
 FROM ubuntu:latest
 # args
-ARG CONTAINER_HOST_NAME
 ARG WEB_ROOT_DIRECTORY
 ARG WEB_CONTAINER_PORTNUM
 ARG PHP_VERSION
@@ -64,7 +63,9 @@ RUN apt update \
                 php-sqlite3 \
                 # MySQL
                 #php-pdo \
-                #php-mysql
+                #php-mysql \
+                # Xdebug
+                php-xdebug \
                 # cleaning
                 && apt clean \
                 && rm -rf /var/lib/apt/lists/*
