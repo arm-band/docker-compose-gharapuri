@@ -58,14 +58,14 @@ ssh-keygen -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key <<< y
 /usr/sbin/sshd -D &
 
 # FTP
-useradd ${9}
-echo "${9}:${10}" | /usr/sbin/chpasswd
-
-cp /template/vsftpd/chroot_list /etc/vsftpd/chroot_list
-
-sed -e "s/WEB_FTP_USER/${9}/gi" \
-        /template/vsftpd/user_list > /etc/vsftpd/user_list
-sed -e "s/WEB_ROOT_DIRECTORY/${1}/gi" \
-        /template/vsftpd/WEB_FTP_USER > /etc/vsftpd/user_conf/${9}
-
-/usr/sbin/vsftpd &
+#useradd ${9}
+#echo "${9}:${10}" | /usr/sbin/chpasswd
+#
+#cp /template/vsftpd/chroot_list /etc/vsftpd/chroot_list
+#
+#sed -e "s/WEB_FTP_USER/${9}/gi" \
+#        /template/vsftpd/user_list > /etc/vsftpd/user_list
+#sed -e "s/WEB_ROOT_DIRECTORY/${1}/gi" \
+#        /template/vsftpd/WEB_FTP_USER > /etc/vsftpd/user_conf/${9}
+#
+#/usr/sbin/vsftpd &

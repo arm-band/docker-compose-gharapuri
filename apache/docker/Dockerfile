@@ -26,7 +26,7 @@ RUN apt update \
                    # git
                    git \
                    # FTP
-                   vsftpd \
+#                   vsftpd \
                    # pasword
                    passwd \
                    # Set Timezone
@@ -91,5 +91,5 @@ RUN mkdir -p /workspace
 # SSH
 RUN mkdir -p /var/run/sshd
 # FTP
-RUN mkdir -p /var/log/vsftpd
-RUN mkdir -p /etc/vsftpd/user_conf
+#RUN mkdir -p /var/log/vsftpd
+#RUN mkdir -p /etc/vsftpd/user_conf
